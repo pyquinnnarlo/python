@@ -1,6 +1,17 @@
-"Name"    = "Python"
-"Author"  =  "Quinn Narlo"
+"Name"    = 'Python'
+"Author"  = 'Quinn Narlo'
           
 
-
 "Start Symbol"  = <Program>
+                
+! --------------------------------------
+! Terminal
+! --------------------------------------
+Identifier = {Letter}{AlphaNumeric}*
+           
+
+
+                
+<Program> ::= <Statement>
+           
+<Statement> ::= Identifier '=' Identifier
