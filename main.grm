@@ -8,10 +8,32 @@
 ! Terminal
 ! --------------------------------------
 Identifier = {Letter}{AlphaNumeric}*
-           
+Numbers    = {Digit}+
+Bool  =  'True' | 'False'
 
 
-                
+<Program> ::= <Program> <Statement>
 <Program> ::= <Statement>
            
-<Statement> ::= Identifier '=' Identifier
+<Statement> ::= <Assignment>
+             
+<Assignment> ::= <Expression>
+
+<Expression> ::= Identifier '=' Numbers '+' Numbers               ! data = 8 + 8
+              |  Identifier '=' Numbers '*' Numbers               ! data = 8 * 8
+              |  Identifier '=' Numbers '-' Numbers               ! data = 8 - 8
+              |  Identifier '=' Numbers '/' Numbers               ! data = 8 / 8
+              |  Identifier '=' Numbers '+' <Negative Expression> ! data = 4 + -4
+              |  Identifier '=' Numbers '*' <Negative Expression> ! data = 4 * -4
+              |  Identifier '=' Numbers '-' <Negative Expression> ! data = 4 - -4
+              |  Identifier '=' Numbers '/' <Negative Expression> ! data = 4 / -4
+              | <String Experssion>
+
+<String Experssion> ::= Identifier '=' '"' Identifier '"'   ! data = "Hello World"
+              |         Identifier '='     Numbers          ! data = 4
+              |         Identifier '='     Bool             ! isProgrammer = True
+              
+<Negative Expression> ::= '-' Numbers
+
+
+
